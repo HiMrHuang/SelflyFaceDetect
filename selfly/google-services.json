@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "820298675881",
+    "firebase_url": "https://slefly-demp.firebaseio.com",
+    "project_id": "slefly-demp",
+    "storage_bucket": "slefly-demp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:820298675881:android:3850d89034ad6c3d",
+        "android_client_info": {
+          "package_name": "com.aee.huanghao.selflypreview"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "820298675881-5gd7tubn1mdhh48ak5jprrekjgunjpt4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIfa6_NZFKAcDkkQD5W7sVBhD_AA-HEbI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:820298675881:android:c47d52b84371f9fe",
+        "android_client_info": {
+          "package_name": "com.kamransoftwares.facedetect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "820298675881-5gd7tubn1mdhh48ak5jprrekjgunjpt4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIfa6_NZFKAcDkkQD5W7sVBhD_AA-HEbI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

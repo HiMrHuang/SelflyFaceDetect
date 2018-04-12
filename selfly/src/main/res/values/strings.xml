@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">SelflyPreview</string>
+    <string name="up">UP</string>
+    <string name="down">DOWN</string>
+    <string name="connect_device">Connect Device</string>
+    <string name="connect_failed">Connect Failed</string>
+    <string name="take_off">Take off</string>
+    <string name="land">Land</string>
+    <string name="forward">FORWARD</string>
+    <string name="back">BACK</string>
+</resources>
