@@ -118,6 +118,7 @@ public class FaceDetectionHub {
                 return null;
             }
         }.execute();
+
     }
 
 }
