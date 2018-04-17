@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
-import com.aee.huanghao.selflypreview.LocalFaceDetection.OnlineLogs;
+import com.aee.huanghao.selflypreview.LocalFaceDetection.ErrorLogs;
 import com.aee.huanghao.selflypreview.R;
 import com.aee.huanghao.selflypreview.stream.CameraControl;
 import com.aee.huanghao.selflypreviewdemo.cameracontrol.AppMessage;
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //TODO remove after deployment
-        OnlineLogs.addNonRepLog("App started");
+        ErrorLogs.addNonRepLog("App started");
 //        Crashlytics.log("Test log");
         findViewById(R.id.bt_connect_device).setOnClickListener(this);
         connectHandler = new ConnectHandler(this);

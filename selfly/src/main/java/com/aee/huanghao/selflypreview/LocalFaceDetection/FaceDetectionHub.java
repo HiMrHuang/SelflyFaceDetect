@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
+import android.graphics.Rect;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.util.SparseArray;
 import android.widget.Toast;
@@ -21,7 +23,6 @@ import java.util.Date;
  */
 
 public class FaceDetectionHub {
-    @SuppressLint("StaticFieldLeak")
     private static final FaceDetectionHub instance = new FaceDetectionHub();
     private long lastTime;
 
@@ -41,64 +42,81 @@ public class FaceDetectionHub {
         this.faceRep = faceRep;
     }
 
-    public void updateFrame(Bitmap bitmap) {
+    @SuppressLint("StaticFieldLeak")
+    public void updateFrame(final Bitmap bitmap, final Rect drawFrameRect) {
         long nowTime = new Date().getTime();
 
-        if (nowTime > (lastTime + 50)) {
+        if (nowTime > (lastTime + 100)) {
             lastTime = nowTime;
         } else {
             return;
         }
 
         if (activity == null) {
-            OnlineLogs.addError("Activity null in hub");
+            ErrorLogs.addError("Activity null in hub");
             return;
         }
 
         if (faceRep == null) {
-            OnlineLogs.addError("Face Rep null in hub");
+            ErrorLogs.addError("Face Rep null in hub");
             return;
         }
 
-        OnlineLogs.addRepLog("update frame execute");
-        FaceDetector detector = new FaceDetector.Builder(activity.getApplicationContext())
-                .setTrackingEnabled(false)
-                .setLandmarkType(FaceDetector.ALL_LANDMARKS)
-                .build();
-
-        Detector<Face> safeDetector = new SafeFaceDetector(detector);
-
-        Frame frame = new Frame.Builder().setBitmap(bitmap).build();
-        final SparseArray<Face> faces = safeDetector.detect(frame);
-
-        if (!safeDetector.isOperational()) {
-            OnlineLogs.addError("Face detector dependencies are not yet available. in hub");
-            Log.e("Aee", "run: ---->error" );
-            // Check for low storage.  If there is low storage, the native library will not be
-            // downloaded, so detection will not become operational.
-            activity.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    IntentFilter lowstorageFilter = new IntentFilter(Intent.ACTION_DEVICE_STORAGE_LOW);
-                    boolean hasLowStorage = activity.registerReceiver(null, lowstorageFilter) != null;
-
-                    if (hasLowStorage) {
-                        Toast.makeText(activity, "Low storage error", Toast.LENGTH_LONG).show();
-                        OnlineLogs.addError("Low storage error");
-                    }
-                }
-            });
+        if (bitmap == null) {
+            ErrorLogs.addError("Bitmap null");
+            return;
         }
 
-        activity.runOnUiThread(new Runnable() {
+        new AsyncTask<Void, Void, Void>() {
+
             @Override
-            public void run() {
-                Log.e("Aee", "run: ---->update" );
-                faceRep.updateFaces(faces);
+            protected Void doInBackground(Void... voids) {
+                ErrorLogs.addRepLog("update frame execute");
+                FaceDetector detector = new FaceDetector.Builder(activity.getApplicationContext())
+                        .setTrackingEnabled(false)
+                        .setLandmarkType(FaceDetector.ALL_LANDMARKS)
+                        .build();
 
+                Detector<Face> safeDetector = new SafeFaceDetector(detector);
+
+                Frame frame = new Frame.Builder().setBitmap(bitmap).build();
+                final SparseArray<Face> faces = safeDetector.detect(frame);
+
+                if (!safeDetector.isOperational()) {
+                    ErrorLogs.addError("Face detector dependencies are not yet available. in hub");
+                    Log.e("Aee", "run: ---->error");
+                    // Check for low storage.  If there is low storage, the native library will not be
+                    // downloaded, so detection will not become operational.
+                    activity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            IntentFilter lowstorageFilter = new IntentFilter(Intent.ACTION_DEVICE_STORAGE_LOW);
+                            boolean hasLowStorage = activity.registerReceiver(null, lowstorageFilter) != null;
+
+                            if (hasLowStorage) {
+                                Toast.makeText(activity, "Low storage error", Toast.LENGTH_LONG).show();
+                                ErrorLogs.addError("Low storage error");
+                            }
+                        }
+                    });
+                }
+
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Log.e("Aee", "run: ---->update");
+                        float widthScale = 1.0f, heightScale = 1.0f;
+                        if (drawFrameRect != null) {
+                            widthScale = drawFrameRect.width() / bitmap.getWidth();
+                            heightScale = drawFrameRect.height() / bitmap.getHeight();
+                        }
+                        faceRep.updateFaces(faces, widthScale, heightScale);
+
+                    }
+                });
+                return null;
             }
-        });
-
+        };
     }
 
 }

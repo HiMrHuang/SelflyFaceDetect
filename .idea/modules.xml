@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/StudyWorkSpace.iml" filepath="$PROJECT_DIR$/StudyWorkSpace.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SelflyFaceDetect.iml" filepath="$PROJECT_DIR$/SelflyFaceDetect.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/crashtest/crashtest.iml" filepath="$PROJECT_DIR$/crashtest/crashtest.iml" />
       <module fileurl="file://$PROJECT_DIR$/detect/detect.iml" filepath="$PROJECT_DIR$/detect/detect.iml" />

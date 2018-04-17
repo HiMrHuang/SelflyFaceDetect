@@ -9,7 +9,7 @@ import android.widget.Button;
 
 import com.aee.huanghao.selflypreview.LocalFaceDetection.FaceDetectionHub;
 import com.aee.huanghao.selflypreview.LocalFaceDetection.FaceRep;
-import com.aee.huanghao.selflypreview.LocalFaceDetection.OnlineLogs;
+import com.aee.huanghao.selflypreview.LocalFaceDetection.ErrorLogs;
 import com.aee.huanghao.selflypreview.R;
 import com.aee.huanghao.selflypreview.stream.CameraControl;
 import com.aee.huanghao.selflypreview.widget.RockerView;
@@ -40,7 +40,7 @@ public class PreviewActivity extends BaseActivity implements RockerView.NewSingl
         if(faceRep!=null){
             FaceDetectionHub.getInstance().init(this, faceRep);
         }else{
-            OnlineLogs.addError("Face Rep Null in preview");
+            ErrorLogs.addError("Face Rep Null in preview");
         }
         initView();
         initData();
