@@ -84,7 +84,7 @@ public class FaceRep extends View {
             } else {
                 p = greenPaint;
             }
-            canvas.drawText(String.format(Locale.US, "%.2f", face.getWidth() * face.getHeight()), left, top, p);
+            canvas.drawText(String.format(Locale.US, "%.2f", face.getWidth() * face.getHeight()), left, top, blackPaint);
             canvas.drawRect(left, top, right, bottom, p);
         }
 
