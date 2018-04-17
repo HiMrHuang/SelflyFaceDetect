@@ -187,14 +187,18 @@ public class H264DecoderThread {
                             Canvas canvas = surfaceHolder.lockCanvas();
                             int w = viewWidth;
                             int h = viewHeight;
+
+                            //scale bitmap to full screen
                             drawFrameRect = ScaleTool.getScaledPosition(image.getWidth(),
                                     image.getHeight(), w, h);
 
+                            //Get bitmap data
                             Bitmap videoBitmap = CuriUtility.createBitmapFromBgrBytes(
                                     bytes,
                                     image.getWidth(),
                                     image.getHeight());
 
+                            //Detect
                             FaceDetectionHub.getInstance().updateFrame(videoBitmap);
 
                             if (null != canvas) {
