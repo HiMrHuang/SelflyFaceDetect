@@ -110,7 +110,8 @@ public class FaceDetectionHub {
                             widthScale = drawFrameRect.width() / bitmap.getWidth();
                             heightScale = drawFrameRect.height() / bitmap.getHeight();
                         }
-                        faceRep.updateFaces(faces, widthScale, heightScale);
+
+                        faceRep.updateFaces(faces, drawFrameRect, widthScale, heightScale);
 
                     }
                 });
