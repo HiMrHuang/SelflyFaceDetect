@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/StudyWorkSpace.iml" filepath="$PROJECT_DIR$/StudyWorkSpace.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/crashtest/crashtest.iml" filepath="$PROJECT_DIR$/crashtest/crashtest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/detect/detect.iml" filepath="$PROJECT_DIR$/detect/detect.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fastdownload/fastdownload.iml" filepath="$PROJECT_DIR$/fastdownload/fastdownload.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lib_utility-release/lib_utility-release.iml" filepath="$PROJECT_DIR$/lib_utility-release/lib_utility-release.iml" />
+      <module fileurl="file://$PROJECT_DIR$/retrofit2/retrofit2.iml" filepath="$PROJECT_DIR$/retrofit2/retrofit2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/selfly/selfly.iml" filepath="$PROJECT_DIR$/selfly/selfly.iml" />
+      <module fileurl="file://$PROJECT_DIR$/widgetcollection/widgetcollection.iml" filepath="$PROJECT_DIR$/widgetcollection/widgetcollection.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,1 @@
+include ':app', ':retrofit2', ':crashtest', ':fastdownload', ':selfly', ':detect', ':lib_utility-release', ':widgetcollection'

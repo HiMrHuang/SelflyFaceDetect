@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/crashtest" />
+            <option value="$PROJECT_DIR$/detect" />
+            <option value="$PROJECT_DIR$/fastdownload" />
+            <option value="$PROJECT_DIR$/lib_utility-release" />
+            <option value="$PROJECT_DIR$/retrofit2" />
+            <option value="$PROJECT_DIR$/selfly" />
+            <option value="$PROJECT_DIR$/widgetcollection" />
+          </set>
+        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
