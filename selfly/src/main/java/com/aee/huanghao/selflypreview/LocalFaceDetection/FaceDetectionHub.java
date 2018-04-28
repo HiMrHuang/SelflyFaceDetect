@@ -43,7 +43,7 @@ public class FaceDetectionHub {
     }
 
     @SuppressLint("StaticFieldLeak")
-    public void updateFrame(final Bitmap bitmap, final Rect drawFrameRect) {
+    public void updateFrame(final Bitmap bitmap, final Rect drawFrameRect, final int w, final int h) {
         long nowTime = new Date().getTime();
 
         if (nowTime > (lastTime + 100)) {
@@ -53,17 +53,17 @@ public class FaceDetectionHub {
         }
 
         if (activity == null) {
-            ErrorLogs.addError("Activity null in hub");
+//            ErrorLogs.addError("Activity null in hub");
             return;
         }
 
         if (faceRep == null) {
-            ErrorLogs.addError("Face Rep null in hub");
+//            ErrorLogs.addError("Face Rep null in hub");
             return;
         }
 
         if (bitmap == null) {
-            ErrorLogs.addError("Bitmap null");
+//            ErrorLogs.addError("Bitmap null");
             return;
         }
 
@@ -71,7 +71,7 @@ public class FaceDetectionHub {
 
             @Override
             protected Void doInBackground(Void... voids) {
-                ErrorLogs.addRepLog("update frame execute");
+//                ErrorLogs.addRepLog("update frame execute");
                 FaceDetector detector = new FaceDetector.Builder(activity.getApplicationContext())
                         .setTrackingEnabled(false)
                         .setLandmarkType(FaceDetector.ALL_LANDMARKS)
@@ -83,7 +83,7 @@ public class FaceDetectionHub {
                 final SparseArray<Face> faces = safeDetector.detect(frame);
 
                 if (!safeDetector.isOperational()) {
-                    ErrorLogs.addError("Face detector dependencies are not yet available. in hub");
+//                    ErrorLogs.addError("Face detector dependencies are not yet available. in hub");
                     Log.e("Aee", "run: ---->error");
                     // Check for low storage.  If there is low storage, the native library will not be
                     // downloaded, so detection will not become operational.
@@ -95,7 +95,7 @@ public class FaceDetectionHub {
 
                             if (hasLowStorage) {
                                 Toast.makeText(activity, "Low storage error", Toast.LENGTH_LONG).show();
-                                ErrorLogs.addError("Low storage error");
+//                                ErrorLogs.addError("Low storage error");
                             }
                         }
                     });
@@ -105,13 +105,14 @@ public class FaceDetectionHub {
                     @Override
                     public void run() {
                         Log.e("Aee", "run: ---->update");
+
                         float widthScale = 1.0f, heightScale = 1.0f;
                         if (drawFrameRect != null) {
                             widthScale = drawFrameRect.width() / bitmap.getWidth();
                             heightScale = drawFrameRect.height() / bitmap.getHeight();
                         }
 
-                        faceRep.updateFaces(faces, drawFrameRect, widthScale, heightScale);
+                        faceRep.updateFaces(faces, drawFrameRect, widthScale, heightScale,w,h);
 
                     }
                 });

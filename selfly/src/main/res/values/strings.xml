@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SelflyPreview</string>
+    <string name="app_name">SelflyDetect</string>
     <string name="up">UP</string>
     <string name="down">DOWN</string>
     <string name="connect_device">Connect Device</string>

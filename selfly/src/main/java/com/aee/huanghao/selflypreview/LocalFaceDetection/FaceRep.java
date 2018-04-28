@@ -20,9 +20,11 @@ public class FaceRep extends View {
     private Paint redPaint;
     private Paint blackPaint;
 
-    private float widthScale;
-    private float heightScale;
+//    private float widthScale;
+//    private float heightScale;
     private Rect drawFrameRect;
+    private int viewWidth;
+    private int viewHeight;
 
     public FaceRep(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -40,15 +42,21 @@ public class FaceRep extends View {
         blackPaint = new Paint();
         blackPaint.setColor(Color.BLACK);
         blackPaint.setStyle(Paint.Style.STROKE);
-        blackPaint.setStrokeWidth(5);
+        blackPaint.setStrokeWidth(8);
+
 //        setBackgroundColor(getResources().getColor(android.R.color.transparent));
     }
 
-    public void updateFaces(SparseArray<Face> faces, Rect drawFrameRect, float widthScale, float heightScale) {
+    private double scale ;
+
+
+    public void updateFaces(SparseArray<Face> faces, Rect drawFrameRect, float widthScale, float heightScale, int w, int h) {
         this.faces = faces;
-        this.widthScale = widthScale;
-        this.heightScale = heightScale;
+//        this.widthScale = widthScale;
+//        this.heightScale = heightScale;
         this.drawFrameRect = drawFrameRect;
+        this.viewWidth = w;
+        this.viewHeight = h;
         postInvalidate();
     }
 
@@ -56,7 +64,7 @@ public class FaceRep extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (faces == null) {
-            ErrorLogs.addError("Faces null in FaceRep");
+//            ErrorLogs.addError("Faces null in FaceRep");
             return;
         }
         int totalFaces = 0;
@@ -66,18 +74,44 @@ public class FaceRep extends View {
             Face face = faces.valueAt(i);
             totalFaces++;
 
-            float x = translateScaleX(face.getPosition().x);
-            float y = translateScaleY(face.getPosition().y);
-            totalX += x;
-            totalY += y;
+//            float centerX = translateX(face.getPosition().x + face.getWidth() / 2.0f);
+//            float centerY = translateY(face.getPosition().y + face.getHeight() / 2.0f);
+//            float offsetX = scaleX(face.getWidth() / 2.0f);
+//            float offsetY = scaleY(face.getHeight() / 2.0f);
+//
+//            float left = centerX - offsetX;
+//            float right = centerX + offsetX;
+//            float top = centerY - offsetY;
+//            float bottom = centerY + offsetY;
+//
+//            Paint p = null;
+//            if (face.getIsSmilingProbability() > 0.4) {
+//                p = redPaint;
+//            } else {
+//                p = greenPaint;
+//            }
+//            canvas.drawRect(left, top, right, bottom, p);
+//            canvas.drawText(String.format("id: %d", face.getId()), centerX, centerY, p);
 
-            float offsetX = translateScaleX(face.getWidth() / 2);
-            float offsetY = translateScaleY(face.getHeight() / 2);
+//            float x = translateScaleX(face.getPosition().x);
+//            float y = translateScaleY(face.getPosition().y);
+//            totalX += x;
+//            totalY += y;
+//
+//            float offsetX = translateScaleY(face.getWidth() / 2);
+//            float offsetY = translateScaleX(face.getHeight() / 2);
+//
+//            float left = x - offsetX;
+//            float right = x + offsetX;
+//            float top = y - offsetY;
+//            float bottom = y + offsetY;
 
-            float left = x - offsetX;
-            float right = x + offsetX;
-            float top = y - offsetY;
-            float bottom = y + offsetY;
+            float left = (float)translateScaleX(face.getPosition().x);
+            float top = (float)translateScaleX(face.getPosition().y);
+            float right = (float)translateScaleX(face.getPosition().x + face.getWidth());
+            float bottom = (float)translateScaleX(face.getPosition().y + face.getHeight());
+
+
             Paint p = null;
             if (face.getIsSmilingProbability() > 0.4) {
                 p = redPaint;
@@ -95,13 +129,17 @@ public class FaceRep extends View {
         canvas.drawCircle(drawFrameRect.centerX(), drawFrameRect.centerY(), 10.0f, blackPaint);
     }
 
-    float translateScaleX(float x) {
-        return widthScale * x;
+    private float translateScaleY(float y) {
+        float scaleX = viewWidth / 1280;
+        return y * scaleX;
+
     }
 
-    float translateScaleY(float y) {
-        return heightScale * y;
+    private float translateScaleX(float x) {
+        float scaleY = viewHeight / 720;
+        return x*scaleY;
     }
+
 
 //    for (Landmark landmark : face.getLandmarks()) {
 //        int cx = (int) (landmark.getPosition().x);// * scale);

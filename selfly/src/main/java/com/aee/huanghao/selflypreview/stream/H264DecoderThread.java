@@ -199,7 +199,7 @@ public class H264DecoderThread {
                                     image.getHeight());
 
                             //Detect
-                            FaceDetectionHub.getInstance().updateFrame(videoBitmap, drawFrameRect);
+                            FaceDetectionHub.getInstance().updateFrame(videoBitmap, drawFrameRect,w,h);
 
                             if (null != canvas) {
                                 canvas.drawBitmap(videoBitmap

@@ -10,12 +10,20 @@ public class ScaleTool {
 		int rectBottom = 0;
 		Rect rect = new Rect();
 
+		//1280 720 2397 1440
+//		Log.e("Aee", "frmW =="+frmW + "frmH =="+frmH+"wndW =="+wndW +"wndH =="+wndH );
+//		Log.e("Aee", "wndW * frmH == "+wndW * frmH );
+//		Log.e("Aee", "wndH * frmW == "+wndH * frmW);
+
+		//1725840 1843200
 		if (wndW * frmH < wndH * frmW) {
 			// full filled with width
 			rectLeft = 0;
-			rectRigth = wndW;
-			rectTop = (wndH - wndW * frmH / frmW) / 2;
-			rectBottom = wndH - rectTop;
+			rectRigth = wndW;  //2397
+			rectTop = (wndH - wndW * frmH / frmW) / 2; //46
+			rectBottom = wndH - rectTop; //1394
+
+//			Log.e("Aee", " rectTop =="+rectTop +"rectBottom =="+rectBottom );
 
 		} else if (wndW * frmH > wndH * frmW) {
 			// full filled with height
@@ -30,8 +38,8 @@ public class ScaleTool {
 			rectTop = 0;
 			rectBottom = wndH;
 		}
-
-		rect = new Rect(rectLeft, rectTop, rectRigth, rectBottom);
+//0 46 2397 1394
+		rect = new Rect(rectLeft, 0, wndW, wndH);
 		return rect;
 	}
 }
